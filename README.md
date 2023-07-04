@@ -2,4 +2,5 @@ A simple To-Do list using the Kanban scheduling system. You can create, edit, re
 
 [Live demo here](https://kanban-board-tadej.vercel.app)
 
-![image](https://github.com/tadejrebernjak/kanban-board/assets/89967862/26d29a44-b8ae-4135-befa-785033ed8c7a)
+![image](https://github.com/tadejrebernjak/kanban-board/assets/89967862/21257786-d1b7-4757-91fe-368bf00f77a5)
+
