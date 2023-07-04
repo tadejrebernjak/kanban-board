@@ -3,17 +3,28 @@ import { useState } from "react";
 import List from "./list";
 
 const dummyNotes = {
-  backlog: [{ title: "Demon Slayer manga", details: "Continue from anime" }],
+  backlog: [
+    { title: "Demon Slayer manga", details: "Continue from anime" },
+    { title: "Read a novel", details: "Perhaps CotE?" },
+  ],
   todo: [
-    { title: "Honkai Star Rail stamina", details: "Farm relics for Kafka :v" },
-    { title: "Vinland Saga S2", details: "Watch it already bitch" },
-    { title: "Workout" },
+    { title: "Dailies in games", details: "HSR, PGR" },
+    { title: "Vinland Saga S2", details: "Watch it already" },
+    { title: "Workout", details: "Arms and legs" },
+    { title: "Next React project", details: "Still need ideas" },
+    { title: "Take out the trash" },
   ],
   doing: [
-    { title: "Kanban board", details: "First React learning project" },
+    {
+      title: "Deploy kanban board",
+      details: "Publish to github and deploy to Vercel",
+    },
     { title: "Jigokuraku", details: "Read manga" },
   ],
-  done: [{ title: "Work out", details: "Chest and core" }],
+  done: [
+    { title: "Work out", details: "Chest and core" },
+    { title: "Kanban board", details: "First React learning project" },
+  ],
 };
 
 export default function Board() {
