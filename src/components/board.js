@@ -6,12 +6,12 @@ const dummyNotes = {
   backlog: [
     { title: "Demon Slayer manga", details: "Continue from anime" },
     { title: "Read a novel", details: "Perhaps CotE?" },
+    { title: "Next React project", details: "Still need ideas" },
   ],
   todo: [
     { title: "Dailies in games", details: "HSR, PGR" },
     { title: "Vinland Saga S2", details: "Watch it already" },
     { title: "Workout", details: "Arms and legs" },
-    { title: "Next React project", details: "Still need ideas" },
     { title: "Take out the trash" },
   ],
   doing: [
