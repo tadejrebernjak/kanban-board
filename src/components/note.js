@@ -7,8 +7,8 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Note(data) {
-  const { note } = data;
+export default function Note(props) {
+  const { note } = props;
   const [editing, setEditing] = useState(false);
   const [editFields, setEditFields] = useState({
     title: note.title,
@@ -27,15 +27,19 @@ export default function Note(data) {
     });
   }
 
-  function handleEditFormChange(e) {
+  function handleEditUpdate(e) {
     setEditFields({ ...editFields, [e.target.name]: e.target.value });
+  }
+
+  function handleDrag(e, noteData) {
+    e.dataTransfer.setData("noteData", JSON.stringify(noteData));
   }
 
   return (
     <div
       className="bg-zinc-800 border border-slate-900 mix-blend-screen"
       draggable={!editing ? true : false}
-      onDragStart={(e) => data.handleOnDrag(e, note)}
+      onDragStart={(e) => handleDrag(e, note)}
     >
       {!editing ? (
         <>
@@ -46,7 +50,7 @@ export default function Note(data) {
           <div className="bg-zinc-900 grid grid-cols-2 grid-rows-1">
             <button
               className="py-2 hover:bg-zinc-950"
-              onClick={() => data.handleRemove(note)}
+              onClick={() => props.handleRemove(note)}
             >
               <FontAwesomeIcon icon={faTrash} />
             </button>
@@ -59,12 +63,7 @@ export default function Note(data) {
           </div>
         </>
       ) : (
-        <form
-          onSubmit={(e) => {
-            setEditing(false);
-            data.handleEditFormSubmit(e, editFields);
-          }}
-        >
+        <>
           <div className="p-3 cursor-pointer">
             <input
               className="w-full p-1 mb-3 text-lg bg-slate-950 focus:outline-none border border-transparent focus:border-white rounded-sm"
@@ -72,7 +71,7 @@ export default function Note(data) {
               name="title"
               value={editFields.title}
               placeholder="Title"
-              onChange={handleEditFormChange}
+              onChange={handleEditUpdate}
             ></input>
             <textarea
               className="w-full p-1 bg-slate-950 focus:outline-none border border-transparent focus:border-white rounded-sm"
@@ -80,7 +79,7 @@ export default function Note(data) {
               value={editFields.details}
               placeholder="Details"
               rows={4}
-              onChange={handleEditFormChange}
+              onChange={handleEditUpdate}
             ></textarea>
           </div>
           <div className="bg-zinc-900 grid grid-cols-2 grid-rows-1">
@@ -90,11 +89,21 @@ export default function Note(data) {
             >
               <FontAwesomeIcon icon={faX} />
             </button>
-            <button className="py-2 hover:bg-zinc-950" type="submit">
+            <button
+              className="py-2 hover:bg-zinc-950"
+              onClick={() => {
+                setEditing(false);
+                props.handleEdit({
+                  ...note,
+                  newTitle: editFields.title,
+                  newDetails: editFields.details,
+                });
+              }}
+            >
               <FontAwesomeIcon icon={faCheck} />
             </button>
           </div>
-        </form>
+        </>
       )}
     </div>
   );
