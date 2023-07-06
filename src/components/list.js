@@ -11,7 +11,6 @@ export default function List({
   handleRemove,
 }) {
   const listItems = notes.map((note) => {
-    note.sourceList = name;
     return (
       <Note
         key={note.id}

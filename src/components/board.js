@@ -38,36 +38,20 @@ export default function Board() {
   }
 
   function removeNote(noteData) {
-    setNotes(...[notes.filter((note) => note.id != noteData.id)]);
+    setNotes([...notes.filter((note) => note.id != noteData.id)]);
   }
 
   function moveNote(e, targetList) {
     const noteData = JSON.parse(e.dataTransfer.getData("noteData"));
-    if (targetList === noteData.sourceList) return;
+    if (targetList === noteData.state) return;
+    noteData.state = targetList;
 
-    setNotes([
-      ...notes.filter((note) => note.id != noteData.id),
-      {
-        id: noteData.id,
-        title: noteData.title,
-        details: noteData.details,
-        state: targetList,
-      },
-    ]);
+    setNotes([...notes.filter((note) => note.id != noteData.id), noteData]);
   }
 
   function editNote(noteData) {
     setNotes([
-      ...notes.map((note) =>
-        note.id === noteData.id
-          ? {
-              id: noteData.id,
-              title: noteData.newTitle,
-              details: noteData.newDetails,
-              state: noteData.state,
-            }
-          : note
-      ),
+      ...notes.map((note) => (note.id === noteData.id ? noteData : note)),
     ]);
   }
 

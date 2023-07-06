@@ -95,8 +95,8 @@ export default function Note(props) {
                 setEditing(false);
                 props.handleEdit({
                   ...note,
-                  newTitle: editFields.title,
-                  newDetails: editFields.details,
+                  title: editFields.title,
+                  details: editFields.details,
                 });
               }}
             >
